@@ -1,0 +1,133 @@
+body {
+  font-family: Arial, sans-serif;
+}
+.content {
+  margin-left: 260px;
+}
+.table{
+	width: 100%;
+}
+#imageContainer {
+	height: 400px;
+	width: 100%;
+	border: 2px solid #ddd;
+	overflow: auto; /* Add scroll bars if the image is too big */
+	display: flex;
+	justify-content: center;
+	align-items: center; 
+}
+#imageContainer img {
+	max-width: none; /* Allow the image to display at its full size */
+	max-height: none; /* Allow the image to display at its full size */
+}
+#map {
+  height: 400px;
+  width: 100%;
+}
+
+#map, #imageContainer{
+	flex: 1
+}
+
+#caseTable {
+	max-height: 25vh; 
+	width: 100%;
+	overflow: auto;
+}
+
+/* Sidebar styling */
+.sidebar {
+	height: 100%;
+	width: 250px;
+	position: fixed;
+	top: 0;
+	left: -250px;
+	background-color: #111;
+	padding-top: 20px;
+	z-index: 9999;
+	transition: 0.3s;
+}
+
+.sidebar.active {
+	left: 0;
+}
+
+.sidebar a {
+	padding: 15px 25px;
+	text-decoration: none;
+	font-size: 18px;
+	color: white;
+	display: block;
+}
+
+.sidebar a:hover {
+	background-color: #575757;
+}
+
+/* Hamburger menu button */
+.hamburger {
+	font-size: 30px;
+	cursor: pointer;
+	color: white;
+	display: block;
+}
+
+.navbar-toggler {
+	border: none;
+}
+
+/* Main content shift when sidebar is open */
+.main-content {
+	margin-left: 0;
+	transition: margin-left 0.3s;
+}
+
+.main-content.shift {
+	margin-left: 250px;
+}
+
+/* Scrollable table */
+#caseTableContainer {
+	max-height: 250px; /* Limit height to show only 5 entries */
+	overflow-y: auto;
+}
+
+/* Button styling */
+#apply {
+	background-color: #28a745;
+	color: white;
+}
+
+#cancel {
+	background-color: #dc3545;
+	color: white;
+}
+
+/* Button positioning */
+.button-group {
+	margin-top: 20px;
+}
+
+/* Sidebar remains collapsible on smaller screens */
+@media screen and (max-width: 768px) {
+	.sidebar {
+		left: -250px;
+	}
+
+	.sidebar.active {
+		left: 0;
+	}
+
+	.main-content.shift {
+		margin-left: 250px;
+	}
+}
+
+/* Styles for screen widths of 2000px or larger */
+@media screen and (min-width: 2000px) {
+	#ham {
+		background-color: #333; /* Example: change background color */
+		font-size: 1.5rem; /* Example: larger font size */
+		padding: 10px; /* Example: increase padding */
+	}
+}

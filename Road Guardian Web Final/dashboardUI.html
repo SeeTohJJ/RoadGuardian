@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAO1fAuZHCcEhZCCVD-0tNb6OSHn3BR-Gw"></script>
+
+    <script src="js_files/databaseReader.js"></script>
+    <script src="js_files/databaseEditor.js"></script>
+    <script src="js_files/objectFactory.js"></script>
+    <script src="js_files/WebObserver.js"></script>
+    <script src="js_files/WebView.js"></script>
+    <script src="js_files/WebController.js"></script>
+</head>
+
+<body onload="WebView.init()">
+    <!-- Sidebar -->
+        <!-- Content area -->
+        <div class="row mb-1">
+            <div class="col-md-3">
+                <img src="logo.jpg" alt="LTA RoadGuardian" style="width: 60%; height: 60%">
+            </div>
+            <div class="col-md-6">
+                <h3 class="clock text-center" id="clock"></h3>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-1">
+                <button id="logout" class="btn btn-danger btn-block float-right" onclick="WebController.logout()">Logout</button>
+            </div>
+        </div>
+
+        <!-- Maps and Cases Row -->
+        <div class="row mb-6">
+            <div class="col-md-6">
+                <div class="card mb-5">
+                    <div class="card-body">
+                        <!--<h5 class="card-title text-center">Location Map</h5>-->
+                        <div class="container-fluid" id="map"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card mb-5">
+                    <div class="card-body">
+                        <!--<h5 class="card-title text-center">Image</h5>-->
+                        <div class="container-fluid" id="imageContainer">Select Case</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cases Table -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="card-title">Entries</h5>
+                    <div>
+                        <button id="caseButton" class="btn btn-info" onclick="WebController.viewChange(this.id)">Pending Action</button>
+                        <button id="reportButton" class="btn btn-info" onclick="WebController.viewChange(this.id)">Motorist Reports</button>
+                        <button id="detectionButton" class="btn btn-info" onclick="WebController.viewChange(this.id)">Camera Detections</button>
+                    </div>
+                </div>
+                <div class="card" style="height: fit-content;">
+                    <div id="caseTableContainer" class="card-body p-0">
+                        <table class="table table-bordered table-hover table-striped m-0" id="caseTable">
+                            <!-- Table content goes here -->
+                        </table>
+                    </div>
+                </div>
+                <!-- Apply and Cancel Buttons inline after cases -->
+                <div class="button-group d-flex justify-content-end">
+                    <button id="apply" class="btn mr-2" onclick="WebController.apply()">Apply</button>
+                    <button id="cancel" class="btn" onclick="WebController.cancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

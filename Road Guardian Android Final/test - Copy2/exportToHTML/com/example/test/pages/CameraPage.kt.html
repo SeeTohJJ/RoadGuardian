@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>CameraPage.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #7a7e85;}
+.s5 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+CameraPage.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">test</span><span class="s2">.</span><span class="s1">pages</span>
+
+
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">camera</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">CameraController</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">camera</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">LifecycleCameraController</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">foundation</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.*</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">material3</span><span class="s2">.</span><span class="s1">BottomSheetScaffold</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">material3</span><span class="s2">.</span><span class="s1">Button</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">material3</span><span class="s2">.</span><span class="s1">ExperimentalMaterial3Api</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">material3</span><span class="s2">.</span><span class="s1">Text</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">material3</span><span class="s2">.</span><span class="s1">rememberBottomSheetScaffoldState</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">runtime</span><span class="s2">.*</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">Modifier</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">platform</span><span class="s2">.</span><span class="s1">LocalContext</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">unit</span><span class="s2">.</span><span class="s1">dp</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">navigation</span><span class="s2">.</span><span class="s1">NavController</span>
+<span class="s1">import com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">test</span><span class="s2">.</span><span class="s1">CameraPreview</span>
+<span class="s1">import com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">test</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">theme</span><span class="s2">.</span><span class="s1">AuthViewModel</span>
+
+<span class="s1">@OptIn</span><span class="s2">(</span><span class="s1">ExperimentalMaterial3Api::</span><span class="s0">class</span><span class="s2">)</span>
+<span class="s1">@Composable</span>
+<span class="s0">fun </span><span class="s1">CameraPage</span><span class="s2">(</span>
+    <span class="s1">modifier: Modifier </span><span class="s2">= </span><span class="s1">Modifier</span><span class="s2">,</span>
+    <span class="s1">navController: NavController</span><span class="s2">,</span>
+    <span class="s1">authViewModel: AuthViewModel</span>
+<span class="s2">) {</span>
+
+    <span class="s0">val </span><span class="s1">scaffoldState </span><span class="s2">= </span><span class="s1">rememberBottomSheetScaffoldState</span><span class="s2">()</span>
+    <span class="s0">val </span><span class="s1">context </span><span class="s2">= </span><span class="s1">LocalContext</span><span class="s2">.</span><span class="s1">current</span>
+    <span class="s0">val </span><span class="s1">controller </span><span class="s2">= </span><span class="s1">remember </span><span class="s2">{</span>
+        <span class="s1">LifecycleCameraController</span><span class="s2">(</span><span class="s1">context</span><span class="s2">).</span><span class="s1">apply </span><span class="s2">{</span>
+            <span class="s1">setEnabledUseCases</span><span class="s2">(</span><span class="s1">CameraController</span><span class="s2">.</span><span class="s1">IMAGE_CAPTURE</span><span class="s2">)</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">BottomSheetScaffold</span><span class="s2">(</span>
+        <span class="s1">scaffoldState </span><span class="s2">= </span><span class="s1">scaffoldState</span><span class="s2">,</span>
+        <span class="s1">sheetPeekHeight </span><span class="s2">= </span><span class="s3">0</span><span class="s2">.</span><span class="s1">dp</span><span class="s2">,</span>
+        <span class="s1">sheetContent </span><span class="s2">= {</span>
+            <span class="s4">// Additional UI like buttons or controls for your camera can be added here</span>
+        <span class="s2">}</span>
+    <span class="s2">) { </span><span class="s1">padding </span><span class="s2">-&gt;</span>
+        <span class="s1">Box</span><span class="s2">(</span>
+            <span class="s1">modifier </span><span class="s2">= </span><span class="s1">modifier</span>
+                <span class="s2">.</span><span class="s1">fillMaxSize</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">padding</span><span class="s2">(</span><span class="s1">padding</span><span class="s2">)</span>
+        <span class="s2">) {</span>
+            <span class="s1">CameraPreview</span><span class="s2">(</span><span class="s1">controller </span><span class="s2">= </span><span class="s1">controller</span><span class="s2">, </span><span class="s1">modifier </span><span class="s2">= </span><span class="s1">Modifier</span><span class="s2">)</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">Spacer</span><span class="s2">(</span><span class="s1">modifier </span><span class="s2">= </span><span class="s1">Modifier</span><span class="s2">.</span><span class="s1">height</span><span class="s2">(</span><span class="s3">16</span><span class="s2">.</span><span class="s1">dp</span><span class="s2">))</span>
+    <span class="s1">Button</span><span class="s2">(</span><span class="s1">onClick </span><span class="s2">= {</span>
+        <span class="s1">navController</span><span class="s2">.</span><span class="s1">navigate</span><span class="s2">(</span><span class="s5">&quot;home&quot;</span><span class="s2">)</span>
+    <span class="s2">},</span>
+    <span class="s2">) {</span>
+        <span class="s1">Text</span><span class="s2">(</span><span class="s1">text </span><span class="s2">= </span><span class="s5">&quot;home&quot;</span><span class="s2">)</span>
+    <span class="s2">}</span>
+
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

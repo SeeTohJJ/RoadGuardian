@@ -1,0 +1,13 @@
+train: ../RDDS/road_damages/train/images
+val: ../RDDS/road_damages/valid/images
+#test: ../test/images
+
+nc: 12
+names: ['alligator crack', 'block crack', 'damaged base crack', 'localise surface defect', 'multi crack', 'peel off with cracks', 'peeling off premix', 'pothole with crack', 'rigid pavement crack', 'single crack', 'transverse crack', 'wearing course peeling off']
+
+roboflow:
+  workspace: new-test-wq1yh
+  project: aa-4heru
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/new-test-wq1yh/aa-4heru/dataset/1
